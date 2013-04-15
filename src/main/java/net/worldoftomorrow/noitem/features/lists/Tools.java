@@ -1,4 +1,4 @@
-package net.worldoftomorrow.noitem.lists;
+package net.worldoftomorrow.noitem.features.lists;
 
 import org.bukkit.inventory.ItemStack;
 

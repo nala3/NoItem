@@ -1,29 +1,30 @@
 package net.worldoftomorrow.noitem.util;
 
-import org.bukkit.craftbukkit.v1_4_R1.inventory.CraftItemStack;
+import net.minecraft.server.v1_5_R2.Item;
+import net.minecraft.server.v1_5_R2.ItemStack;
+import net.minecraft.server.v1_5_R2.PotionBrewer;
 
-import net.minecraft.server.v1_4_R1.Item;
-import net.minecraft.server.v1_4_R1.PotionBrewer;
-import net.minecraft.server.v1_4_R1.ItemStack;
+import org.bukkit.craftbukkit.v1_5_R2.inventory.CraftItemStack;
 
-public class NMSMethods {
-	
+public class NMSUtil {
 	public static int getPotionResult(int origdata, org.bukkit.inventory.ItemStack ingredient) {
 		return getPotionResult(origdata, CraftItemStack.asNMSCopy(ingredient));
 	}
-	
+
 	private static int getPotionResult(int origdata, ItemStack ingredient) {
-		
+
 		int newdata = getBrewResult(origdata, ingredient);
-		
-		if((origdata <= 0 || origdata != newdata)) {
+
+		if ((origdata <= 0 || origdata != newdata)) {
 			return origdata != newdata ? newdata : origdata;
 		} else {
 			return origdata;
 		}
 	}
-	
+
+	// TODO: BROKEN
 	private static int getBrewResult(int i, ItemStack itemstack) {
-        return itemstack == null ? i : (Item.byId[itemstack.id].v() ? PotionBrewer.a(i, Item.byId[itemstack.id].u()) : i);
-    }
+		return itemstack == null ? i : (Item.byId[itemstack.id].w() ? PotionBrewer.a(i, Item.byId[itemstack.id].u())
+				: i);
+	}
 }
