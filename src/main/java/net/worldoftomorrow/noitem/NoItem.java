@@ -1,8 +1,12 @@
 package net.worldoftomorrow.noitem;
 
+import java.io.IOException;
+
 import net.worldoftomorrow.noitem.features.FeatureManager;
 import net.worldoftomorrow.noitem.features.NIFeature;
 import net.worldoftomorrow.noitem.permissions.PermManager;
+import net.worldoftomorrow.noitem.util.Metrics;
+import net.worldoftomorrow.noitem.util.Updater;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -21,11 +25,24 @@ public class NoItem extends JavaPlugin {
 	@Override
 	public void onEnable() {
 		this.config = new Config();
-		// Load the FeatureManager AFTER static resources have been set up since
-		// they are used in the feature managers constructor.
 		this.fm = new FeatureManager(Thread.currentThread().getContextClassLoader());
 		Logging.info(fm.reloadFeatures() + " features loaded.");
 		this.pm = new PermManager();
+		
+		if(Config.getBoolean("AutoDownloadUpdates")) {
+			new Updater(this, this.getFile(), Updater.UpdateType.DEFAULT, true);
+		} else if(Config.getBoolean("CheckForUpdates")) {
+			new Updater(this, this.getFile(), Updater.UpdateType.NO_DOWNLOAD, true);
+		}
+		
+		try {
+			if(!new Metrics(this).start()) {
+				this.getLogger().warning("Could not start metrics!");
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 	}
 
 	private static void setupStatic(NoItem inst) {

@@ -1,0 +1,30 @@
+# ############################
+# ### NoItem Configuration ###
+# ############################
+#
+# ## THIS FILE MUST BE UTF-8 ##
+# 
+# ###########################
+# ### General Information ###
+# ###########################
+# To block a potion, you must enter its damage value.
+# POTION DATA VALUES: http://www.minecraftwiki.net/wiki/Potions#Data_value_table
+# PERMISSIONS:        http://dev.bukkit.org/server-mods/noitem/pages/permissions/
+# 
+# ################
+# ### Messages ###
+# ################
+# These are the messages used by the plugin, you can change them
+# for easy localization. However, be sure to use single quotes
+# around them to avoid any problems. ( ' )
+# 
+# These are some variables you can use in feature messages:
+# %n = Player name
+# %i = Item/Recipe
+# %x = X location
+# %y = Y location
+# %z = Z location
+# %w = World
+# 
+
+Features: []
