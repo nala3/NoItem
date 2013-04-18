@@ -1,5 +1,7 @@
 package net.worldoftomorrow.noitem.features.defaults;
 
+import net.minecraft.server.v1_5_R2.EntityPlayer;
+import net.minecraft.server.v1_5_R2.MinecraftServer;
 import net.worldoftomorrow.noitem.NoItem;
 import net.worldoftomorrow.noitem.features.NIFeature;
 
@@ -24,6 +26,9 @@ public class Craft extends NIFeature {
 			event.setCancelled(true);
 			this.doNotify(p, result);
 		}
+		
+		EntityPlayer ep = MinecraftServer.getServer().getPlayerList().f(p.getName());
+		//Get the EP's InventoryCrafting and World, then use CraftingManager.getInstance().craft(ic, w)
 	}
 
 	private Player getPlayerFromEntity(HumanEntity ent) {
