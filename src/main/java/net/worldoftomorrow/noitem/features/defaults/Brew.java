@@ -18,7 +18,7 @@ public class Brew extends NIFeature {
 
 	public Brew() {
 		super("Brew", "You are not allowed to brew that potion! (%i)", true);
-		// TODO Test feature (broken)
+		// TODO Test feature (possibly fixed)
 	}
 
 	@EventHandler
