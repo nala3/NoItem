@@ -22,7 +22,7 @@ public class Have extends NIFeature {
 		Player p = event.getPlayer();
 		PlayerInventory inv = p.getInventory();
 		ItemStack item = inv.getItem(event.getNewSlot());
-		if (item.getTypeId() != 0 && NoItem.getPM().has(p, this, item)) {
+		if (item != null && item.getTypeId() != 0 && NoItem.getPM().has(p, this, item)) {
 			this.doNotify(p, item);
 			inv.remove(item);
 		}
