@@ -71,8 +71,7 @@ public class PermManager {
 	}
 
 	private boolean check(Player p, String[] perms) {
-		// Check the configuration to see if OP's should be used.
-		if ((Config.getBoolean("UseOPs") && p.isOp()) || p.hasPermission("noitem.*")) return whitelist;
+		if (p.hasPermission("noitem.*")) return whitelist;
 		// First check if any of the normal permissions are set false.
 		for (int i = 0; i <= 3; i++) {
 			if (perms[i] == null) continue;
