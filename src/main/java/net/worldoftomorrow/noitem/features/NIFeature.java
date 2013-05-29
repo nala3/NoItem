@@ -50,4 +50,8 @@ public abstract class NIFeature implements Listener {
 			p.sendMessage(StringUtil.parseMsg(p, this.message, o));
 		}
 	}
+	
+	public boolean isCheckable() {
+		return this.getClass().isAssignableFrom(CheckableNIFeature.class);
+	}
 }

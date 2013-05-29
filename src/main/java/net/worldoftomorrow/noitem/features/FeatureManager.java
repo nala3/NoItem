@@ -28,12 +28,12 @@ import net.worldoftomorrow.noitem.features.defaults.Wear;
 
 public class FeatureManager extends URLClassLoader {
 
-	private final ArrayList<NIFeature>			defaults	= new ArrayList<NIFeature>();
-	private final ArrayList<CustomNIFeature>	custom		= new ArrayList<CustomNIFeature>();
-	private int									defLoaded	= 0;
-	private int									custLoaded	= 0;
+	private final ArrayList<NIFeature> defaults = new ArrayList<NIFeature>();
+	private final ArrayList<NIFeature> custom = new ArrayList<NIFeature>();
+	private int defLoaded = 0;
+	private int custLoaded = 0;
 
-	private static File							featureFolder;
+	private static File featureFolder;
 
 	// Needs the context class loader. (
 	// Thread.currentThread().getContextClassLoader() )
@@ -68,7 +68,8 @@ public class FeatureManager extends URLClassLoader {
 	 */
 	private static URL[] setupFolder() {
 		// Set the static feature folder.
-		setFeatureFolder(new File(NoItem.getInstance().getDataFolder() + File.separator + "features"));
+		setFeatureFolder(new File(NoItem.getInstance().getDataFolder()
+				+ File.separator + "features"));
 		// Make sure the feature folder exists.
 		if (!featureFolder.exists()) {
 			featureFolder.mkdirs();
@@ -121,6 +122,8 @@ public class FeatureManager extends URLClassLoader {
 				// Check if the class extends at least CustomNIFeature
 				if (clazz.isAssignableFrom(CustomNIFeature.class)) {
 					custom.add((CustomNIFeature) clazz.newInstance());
+				} else if (clazz.isAssignableFrom(CustomCheckableNIFeature.class)) {
+					custom.add((CustomCheckableNIFeature) clazz.newInstance());
 				}
 				NoItem.getInstance().reloadConfig();
 			}
@@ -132,7 +135,7 @@ public class FeatureManager extends URLClassLoader {
 			// Class is not public
 		}
 		int loaded = 0;
-		for (CustomNIFeature f : custom) {
+		for (NIFeature f : custom) {
 			if (f.isEnabled()) {
 				NoItem.registerListener(f);
 				loaded++;

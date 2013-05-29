@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import net.worldoftomorrow.noitem.features.FeatureManager;
 import net.worldoftomorrow.noitem.features.NIFeature;
-import net.worldoftomorrow.noitem.features.lists.Lists;
+import net.worldoftomorrow.noitem.features.configs.Lists;
 import net.worldoftomorrow.noitem.permissions.PermManager;
 import net.worldoftomorrow.noitem.util.Metrics;
 import net.worldoftomorrow.noitem.util.Updater;

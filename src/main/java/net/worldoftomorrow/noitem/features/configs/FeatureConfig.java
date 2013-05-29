@@ -14,10 +14,9 @@ public abstract class FeatureConfig {
 	private final YamlConfiguration config;
 
 	public FeatureConfig(NIFeature feature) {
-		this.file = new File(NoItem.getInstance().getDataFolder()
-				+ File.separator + "configs" + File.separator
-				+ feature.getName().toLowerCase());
-		if(!initialize()) {
+		this.file = new File(NoItem.getInstance().getDataFolder() + File.separator
+				+ "configs" + File.separator + feature.getName().toLowerCase());
+		if (!initialize()) {
 			Logging.severe("Could not initialize feature config!");
 		}
 		this.config = YamlConfiguration.loadConfiguration(this.file);
@@ -28,8 +27,7 @@ public abstract class FeatureConfig {
 			return true;
 		} else {
 			try {
-				if (!file.getParentFile().exists()
-						&& !file.getParentFile().mkdirs()) {
+				if (!file.getParentFile().exists() && !file.getParentFile().mkdirs()) {
 					Logging.severe("Could not create feature config folder!");
 					return false;
 				}
@@ -44,26 +42,25 @@ public abstract class FeatureConfig {
 		}
 		return false;
 	}
-	
+
 	public File getFile() {
 		return this.file;
 	}
-	
+
 	public YamlConfiguration getYamlConfig() {
 		return this.config;
 	}
-	
+
 	public void setValue(String key, Object o) {
 		this.config.set(key, o);
 	}
-	
+
 	public String getString(String key) {
 		return this.config.getString(key);
 	}
-	
+
 	public boolean getBoolean(String key) {
 		return this.config.getBoolean(key);
 	}
-	
-	
+
 }
