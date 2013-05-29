@@ -1,4 +1,4 @@
-package net.worldoftomorrow.noitem.features.lists;
+package net.worldoftomorrow.noitem.features.configs;
 
 import java.io.File;
 import java.io.IOException;
