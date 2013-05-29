@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import net.worldoftomorrow.noitem.features.FeatureManager;
 import net.worldoftomorrow.noitem.features.NIFeature;
+import net.worldoftomorrow.noitem.features.lists.Lists;
 import net.worldoftomorrow.noitem.permissions.PermManager;
 import net.worldoftomorrow.noitem.util.Metrics;
 import net.worldoftomorrow.noitem.util.Updater;
@@ -17,6 +18,8 @@ public class NoItem extends JavaPlugin {
 	private PermManager		pm;
 	@SuppressWarnings("unused")
 	private Config			config;
+	@SuppressWarnings("unused")
+	private Lists 			lists;
 
 	public NoItem() {
 		setupStatic(this);
@@ -28,7 +31,7 @@ public class NoItem extends JavaPlugin {
 		this.fm = new FeatureManager(Thread.currentThread().getContextClassLoader());
 		Logging.info(fm.reloadFeatures() + " features loaded.");
 		this.pm = new PermManager();
-		
+		this.lists = new Lists();
 		if(Config.getBoolean("AutoDownloadUpdates")) {
 			new Updater(this, this.getFile(), Updater.UpdateType.DEFAULT, true);
 		} else if(Config.getBoolean("CheckForUpdates")) {

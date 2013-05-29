@@ -19,7 +19,7 @@ public class Hold extends NIFeature {
 
 	public Hold() {
 		super("Hold", "You are not allowed to hold %i!", true);
-		// TODO Auto-generated constructor stub
+		// TODO Test
 	}
 
 	@EventHandler

@@ -34,8 +34,8 @@ public abstract class YamlFile {
 				plugin.getLogger().severe("Could not create config file: " + file.getName());
 				return null;
 			} else {
-				// Get the config file from the plugin folder
-				// This will be assigned to yamlfile;
+				// Get the configuration file from the plugin folder
+				// This will be assigned to yamlfile
 				YamlConfiguration confile = YamlConfiguration.loadConfiguration(file);
 				// Get the values of the resource file
 				Map<String, Object> vals = resource.getValues(true);

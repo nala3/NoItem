@@ -9,6 +9,7 @@ import org.bukkit.inventory.ItemStack;
 public class StringUtil {
 
 	public static String parseMsg(Player offender, String msg, Object o) {
+		msg = "&3" + msg;
 		msg = msg.replace("%n", offender.getName());
 		msg = msg.replace("%w", offender.getWorld().getName());
 		msg = msg.replace("%x", String.valueOf(offender.getLocation().getBlockX()));
