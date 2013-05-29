@@ -1,7 +1,7 @@
 package net.worldoftomorrow.noitem.features.defaults;
 
 import net.worldoftomorrow.noitem.NoItem;
-import net.worldoftomorrow.noitem.features.NIFeature;
+import net.worldoftomorrow.noitem.features.CheckableNIFeature;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -10,7 +10,7 @@ import org.bukkit.event.player.PlayerPickupItemEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 
-public class Have extends NIFeature {
+public class Have extends CheckableNIFeature {
 
 	public Have() {
 		super("Have", "You are not allowed to have %i!", true);
@@ -37,6 +37,16 @@ public class Have extends NIFeature {
 			event.getItem().setPickupDelay(200);
 			event.setCancelled(true);
 			this.doNotify(p, item);
+		}
+	}
+
+	@Override
+	public void check(Player p) {
+		for(ItemStack i : p.getInventory().getContents()) {
+			if(NoItem.getPM().has(p, this, i)) {
+				this.doNotify(p, i);
+				i.setTypeId(0);
+			}
 		}
 	}
 }

@@ -1,7 +1,7 @@
 package net.worldoftomorrow.noitem.features.defaults;
 
 import net.worldoftomorrow.noitem.NoItem;
-import net.worldoftomorrow.noitem.features.NIFeature;
+import net.worldoftomorrow.noitem.features.CheckableNIFeature;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.HumanEntity;
@@ -15,7 +15,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 
-public class Hold extends NIFeature {
+public class Hold extends CheckableNIFeature {
 
 	public Hold() {
 		super("Hold", "You are not allowed to hold %i!", true);
@@ -70,5 +70,14 @@ public class Hold extends NIFeature {
 		ItemStack i2 = inv.getItem(s2);
 		inv.setItem(s1, i2);
 		inv.setItem(s2, i1);
+	}
+
+	@Override
+	public void check(Player p) {
+		ItemStack held = p.getItemInHand();
+		if(held.getTypeId() != 0 && NoItem.getPM().has(p, this, held)) {
+			p.getWorld().dropItem(p.getLocation(), held.clone());
+			p.getInventory().setItemInHand(null);
+		}
 	}
 }

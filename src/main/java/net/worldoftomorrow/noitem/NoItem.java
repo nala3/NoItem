@@ -18,7 +18,6 @@ public class NoItem extends JavaPlugin {
 	private PermManager		pm;
 	@SuppressWarnings("unused")
 	private Config			config;
-	@SuppressWarnings("unused")
 	private Lists 			lists;
 
 	public NoItem() {
@@ -62,5 +61,9 @@ public class NoItem extends JavaPlugin {
 
 	public static PermManager getPM() {
 		return instance.pm;
+	}
+	
+	public static Lists getLists() {
+		return instance.lists;
 	}
 }

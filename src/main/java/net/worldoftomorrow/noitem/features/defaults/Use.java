@@ -25,7 +25,7 @@ public class Use extends NIFeature {
 		if (e instanceof Player) {
 			Player p = (Player) e;
 			ItemStack inHand = p.getItemInHand();
-			if (NoItem.getPM().has(p, this, inHand)) {
+			if (NoItem.getLists().isTool(inHand) && NoItem.getPM().has(p, this, inHand)) {
 				event.setCancelled(true);
 				this.doNotify(p, inHand);
 			}
@@ -37,7 +37,7 @@ public class Use extends NIFeature {
 		if (event.isCancelled()) return;
 		Player p = event.getPlayer();
 		ItemStack inHand = p.getItemInHand();
-		if (NoItem.getPM().has(p, this, inHand)) {
+		if (NoItem.getLists().getTools().isShear(inHand) && NoItem.getPM().has(p, this, inHand)) {
 			event.setCancelled(true);
 			this.doNotify(p, inHand);
 		}
@@ -48,7 +48,7 @@ public class Use extends NIFeature {
 		if (event.isCancelled()) return;
 		Player p = event.getPlayer();
 		ItemStack inHand = p.getItemInHand();
-		if (inHand != null && NoItem.getPM().has(p, this, inHand)) {
+		if (NoItem.getLists().isTool(inHand) && NoItem.getPM().has(p, this, inHand)) {
 			event.setCancelled(true);
 			this.doNotify(p, inHand);
 		}

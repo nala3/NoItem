@@ -20,7 +20,8 @@ public class Wear extends CheckableNIFeature {
 	}
 
 	public void handleWearInvClick(InventoryClickEvent event) {
-		if (event.isCancelled()) return;
+		if (event.isCancelled())
+			return;
 		InventoryView view = event.getView();
 		SlotType st = event.getSlotType();
 		int slot = event.getRawSlot();
@@ -30,13 +31,16 @@ public class Wear extends CheckableNIFeature {
 			Player p = getPlayerFromEntity(event.getWhoClicked());
 			// Handle direct clicking
 			if (st == SlotType.ARMOR && cursor.getTypeId() != 0) {
-				if (/* NoItem.getLists().isArmor(cursor.getTypeId()) && */NoItem.getPM().has(p, this, cursor)) {
+				if (NoItem.getLists().isArmor(cursor.getTypeId())
+						&& NoItem.getPM().has(p, this, cursor)) {
 					event.setCancelled(true);
 					this.doNotify(p, cursor);
 				}
 				// Handle shift clicking
-			} else if (st != SlotType.ARMOR && current.getTypeId() != 0 && event.isShiftClick()) {
-				if (/* NoItem.getLists().isArmor(current.getTypeId()) && */NoItem.getPM().has(p, this, current)) {
+			} else if (st != SlotType.ARMOR && current.getTypeId() != 0
+					&& event.isShiftClick()) {
+				if (NoItem.getLists().isArmor(current.getTypeId())
+						&& NoItem.getPM().has(p, this, current)) {
 					event.setCancelled(true);
 					this.doNotify(p, current);
 				}
@@ -45,9 +49,14 @@ public class Wear extends CheckableNIFeature {
 	}
 
 	@Override
-	public void check() {
-		// TODO Implement Wear check
-
+	public void check(Player p) {
+		for(ItemStack i : p.getInventory().getArmorContents()) {
+			// No need for list checks here, we know it is being worn
+			if(NoItem.getPM().has(p, this, i)) {
+				this.doNotify(p, i);
+				i.setTypeId(0);
+			}
+		}
 	}
 
 	private Player getPlayerFromEntity(HumanEntity ent) {
