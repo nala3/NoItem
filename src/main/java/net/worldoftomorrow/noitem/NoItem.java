@@ -12,6 +12,8 @@ import net.worldoftomorrow.noitem.util.Updater;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class NoItem extends JavaPlugin {
+	
+	// Seperate log file for errors to be printed
 
 	private static NoItem	instance;
 	private FeatureManager	fm;
@@ -65,5 +67,9 @@ public class NoItem extends JavaPlugin {
 	
 	public static Lists getLists() {
 		return instance.lists;
+	}
+	
+	public FeatureManager getFeatureManager() {
+		return fm;
 	}
 }

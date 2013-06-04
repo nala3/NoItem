@@ -19,7 +19,7 @@ public class PermManager {
 
 	public boolean has(Player p, NIFeature feature, Object o) {
 		final boolean has = check(p, construct(feature, o));
-		return whitelist ? !has : has;
+		return whitelist ? !has : has; 
 	}
 
 	private String[] construct(NIFeature feature, Object o) {

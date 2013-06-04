@@ -60,6 +60,20 @@ public class FeatureManager extends URLClassLoader {
 		defaults.add(new Use());
 		defaults.add(new Wear());
 	}
+	
+	/**
+	 * @return An ArrayList of all loaded default and custom features
+	 */
+	public ArrayList<NIFeature> getLoadedFeatures() {
+		ArrayList<NIFeature> all = new ArrayList<NIFeature>();
+		all.addAll(defaults);
+		all.addAll(custom);
+		return all;
+	}
+	
+	public static FeatureManager getInstance() {
+		return NoItem.getInstance().getFeatureManager();
+	}
 
 	/**
 	 * 
