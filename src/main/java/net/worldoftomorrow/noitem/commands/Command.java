@@ -27,33 +27,16 @@
  * either expressed or implied, of the FreeBSD Project.
  */
 
-package net.worldoftomorrow.noitem.features;
+package net.worldoftomorrow.noitem.commands;
 
-import org.bukkit.Bukkit;
-import org.bukkit.World;
-import org.bukkit.entity.Player;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
-public abstract class CheckableNIFeature extends NIFeature {
-
-	public CheckableNIFeature(String name, String message, boolean notify) {
-		super(name, message, notify);
-	}
-	
-	public void checkAll() {
-		for(Player p : Bukkit.getServer().getOnlinePlayers()) {
-			this.check(p);
-		}
-	}
-	
-	public void checkWorld(World w) {
-		for(Player p : w.getPlayers()) {
-			this.check(p);
-		}
-	}
-	
-	/**
-	 * This method is used to check every player for compliance to this feature.
-	 */
-	public abstract void check(Player p);
-
+@Target(ElementType.METHOD)
+@Retention(RetentionPolicy.RUNTIME)
+public @interface Command {
+	String syntax();
+	String[] perms();
 }
